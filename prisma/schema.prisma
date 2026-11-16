@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String          @id @default(cuid())
+  name      String
+  email     String          @unique
+  password  String          @default("password123")
+  avatar    String?
+  title     String?
+  documents Document[]      @relation("UserDocuments")
+  shares    DocumentShare[]
+  createdAt DateTime        @default(now())
+}
+
+model Document {
+  id          String               @id @default(cuid())
+  title       String               @default("Untitled Document")
+  content     String               @default("")
+  ownerId     String
+  owner       User                 @relation("UserDocuments", fields: [ownerId], references: [id], onDelete: Cascade)
+  isPublic    Boolean              @default(false)
+  publicRole  String               @default("VIEWER") // "VIEWER" | "EDITOR"
+  shares      DocumentShare[]
+  attachments DocumentAttachment[]
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+}
+
+model DocumentShare {
+  id         String   @id @default(cuid())
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role       String   @default("VIEWER") // "VIEWER" | "EDITOR"
+  createdAt  DateTime @default(now())
+
+  @@unique([documentId, userId])
+}
+
+model DocumentAttachment {
+  id         String   @id @default(cuid())
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  fileName   String
+  fileType   String
+  fileSize   Int
+  fileData   String
+  createdAt  DateTime @default(now())
+}

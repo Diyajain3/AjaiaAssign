@@ -1,0 +1,54 @@
+# Walkthrough Video Link and Presentation Script
+
+## Walkthrough Video URL
+[Insert your unlisted Loom or YouTube URL here, e.g. https://www.loom.com/share/... or https://youtu.be/...]
+
+---
+
+## 3 to 5 Minute Recording Script & Agenda
+
+Follow this structured agenda to present the project clearly within the 3-5 minute timebox:
+
+### 1. Introduction and Project Scope (0:00 - 0:40)
+- "Hello, this is my submission for the Ajaia collaborative document editor exercise."
+- "My goal was to build a focused, lightweight productivity tool inspired by Google Docs that demonstrates sound product judgment, full-stack capability, and clear engineering prioritization."
+- Show the clean workspace interface: point out the warm paper/canvas design, crisp 1px borders, and absence of generic SaaS clutter.
+
+### 2. Document Creation, Rich-Text Editing, and Auto-Save (0:40 - 1:25)
+- Click "New Document" on the dashboard.
+- Edit the document title inline.
+- Demonstrate formatting: Bold, Italic, Underline, H1/H2/H3 headings, Bullet and Numbered lists, and Code blocks.
+- Highlight the debounced auto-save indicator: Show that it displays "Saving changes..." and updates to "Saved at [time]".
+- Refresh the browser page to demonstrate persistence across reloads.
+
+### 3. File Handling: Ingestion and Attachments (1:25 - 2:05)
+- Return to Dashboard, click "Import File".
+- Select a `.md` or `.docx` file and show that it immediately parses headings, lists, and paragraphs into a brand new document draft.
+- Open the "Attachments" drawer: Upload a reference file (image, PDF, etc.).
+- Demonstrate that the attachment appears in the list and can be downloaded or deleted.
+
+### 4. Sharing Model, Password Security & Role Enforcement (2:05 - 3:00)
+- Open the "Share" modal on a document owned by Alice Chen.
+- Show collaborator management: Bob Smith has "Can edit" access and Charlie Davis has "Can view" access.
+- Demonstrate session security: Click **"Sign Out"** in the top navigation.
+- Sign in as **Charlie Davis** by entering password `charlie123`.
+- Open Alice's document: show the **"View-Only"** badge and locked toolbar.
+- Point out that Bob's unshared documents are hidden from Charlie, and direct URLs return HTTP 403 Forbidden.
+- Sign out and sign in as **Bob Smith** (`bob123`) to show full editing capability.
+
+### 5. Self-Serve User Registration (3:00 - 3:30)
+- Click **"Sign Out"**, then click the **"Create Account"** tab on `/login`.
+- Register a new team member (e.g. `Diana Prince` / `diana123`).
+- Show that Diana is automatically logged in with an isolated session cookie, can create private documents, and can be invited to collaborate by existing members.
+
+### 6. Architectural Decisions and Scope Prioritization (3:30 - 4:10)
+- "For architecture, I chose Next.js 14 App Router, TypeScript, TipTap (built on ProseMirror), and SQLite with Prisma."
+- "I intentionally prioritized relational integrity, real session security, stable rich-text editing, and practical file workflows over a complex CRDT sync engine, which would have introduced synchronization fragility within a short timebox."
+- Mention that attachments are self-contained in SQLite so reviewers can run the project without cloud storage setup.
+
+### 7. AI-Native Workflow and Human Product Interventions (4:10 - 4:50)
+- "AI tools materially accelerated the project by generating boilerplate API handlers, regex file parsers, and automated tests."
+- "However, my product judgment was the driving force: When the AI initially implemented an insecure client-side user switcher allowing anyone in one window to access all members' documents, I stepped in and mandated a real authentication layer with mandatory password verification and cookie session isolation."
+- "I also guided the addition of self-serve registration, enforced strict design restraint (no drop shadows, no emojis, no Lucide), and resolved Next.js Windows build path issues."
+- "I verified correctness through 10 automated Vitest unit tests covering permissions and file parsing, as well as a clean production build."
+- "Thank you for reviewing!"
