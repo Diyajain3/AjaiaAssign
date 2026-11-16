@@ -2,7 +2,11 @@
 
 A lightweight collaborative document editor inspired by Google Docs, built for Ajaia's internal productivity tooling exploration.
 
-The project demonstrates document creation, rich-text editing, file ingestion (.docx, .md, .txt), file attachments, role-based sharing, and local persistence.
+## Project Links
+- **GitHub Repository**: https://github.com/Diyajain3/AjaiaAssign
+- **Walkthrough Video (Google Drive)**: https://drive.google.com/file/d/1oWK11IRsKjzBMUjkcGfb0CIX9wSob5Pn/view?usp=sharing
+
+The project demonstrates document creation, rich-text editing, file ingestion (.docx, .md, .txt), file attachments, role-based sharing, password-protected authentication, and local persistence.
 
 ## Core Capabilities
 
@@ -23,12 +27,12 @@ The project demonstrates document creation, rich-text editing, file ingestion (.
    - Viewers are restricted to a read-only canvas with disabled editor controls.
    - Dashboard visually separates documents into "Owned by me" and "Shared with me".
 
-4. **Multi-User Simulation**:
-   - The top navigation bar includes an instant user switcher between three seeded team accounts:
-     - **Alice Chen** (Product Lead)
-     - **Bob Smith** (Senior Staff Engineer)
-     - **Charlie Davis** (Product Designer)
-   - Allows reviewers to test permission enforcement, sharing transitions, and view-only restrictions without needing repeated logins.
+4. **Authentication & Session Security**:
+   - Cookie-based session isolation (`ajaia_session_user_id`) prevents unauthorized cross-member document access in a single window.
+   - Mandatory password authentication on sign-in (`alice123`, `bob123`, `charlie123`).
+   - Self-serve registration via the "Create Account" tab on `/login` with duplicate email validation.
+   - Reviewer demo account shortcuts for rapid one-click credential autofill.
+   - Explicit Sign Out flow to destroy sessions.
 
 5. **Persistence**:
    - Relational SQLite database managed via Prisma ORM (`prisma/dev.db`).

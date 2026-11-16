@@ -1,9 +1,15 @@
 # Project Submission: Ajaia Docs
 
+## Project Links
+- **GitHub Repository**: https://github.com/Diyajain3/AjaiaAssign
+- **Walkthrough Video Link (Google Drive)**: https://drive.google.com/file/d/1oWK11IRsKjzBMUjkcGfb0CIX9wSob5Pn/view?usp=sharing
+
 ## 1. Submission Overview & Deliverables
 This package contains the full source code, test suite, and architectural documentation for Ajaia Docs, a lightweight collaborative document editor built for Ajaia's internal productivity tooling exploration.
 
 The following deliverables are included:
+- **GitHub Repository**: Full repository with commits and history.
+- **Walkthrough Video**: 3-5 minute demonstration covering features, security, and architecture.
 - **Full Source Code**: Next.js 14 App Router, TypeScript, TipTap editor, Tailwind CSS, Prisma ORM, and SQLite.
 - **`README.md`**: Complete local setup, run, build, and test instructions.
 - **`ARCHITECTURE.md`**: Architectural decisions, technical trade-offs, schema, and human vs. AI prioritization rationale.
